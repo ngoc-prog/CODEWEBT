@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Table - Nguyễn Võ Như Ngọc</title>
+    <style type="text/css">
+        thead, tfoot {
+            background-color: rgb(26, 114, 238);
+            color: white;
+        }
+        tbody tr:nth-child(2n+1) {
+            background-color: rgb(255, 255, 255);
+        }
+        tbody tr:nth-child(2n) {
+            background-color: rgb(255, 192, 252);
+        }
+        tbody tr:hover {
+            background-color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Student ID</th>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>123456</td>
+                <td>Albert Einstein</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>321232</td>
+                <td>Niels Bohr</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>987544</td>
+                <td>Stephen Hawking</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>359687</td>
+                <td>Isaac Newton</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>574878</td>
+                <td>Nikola Tesla</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Designed by John</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
