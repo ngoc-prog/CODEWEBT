@@ -1,0 +1,172 @@
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: black;
+    margin: 0;
+    padding: 0;
+    background-color: white; 
+}
+
+.page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ff9933;
+    padding: 10px;
+    border: 1px solid black; 
+}
+
+/* HEADER/BANNER */
+header {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.logo-text {
+    color: #663300; 
+    font-size: 2em;
+    margin: 0;
+    border-bottom: 2px solid #663300;
+    display: inline-block;
+    padding-bottom: 5px;
+    font-family: 'Times New Roman', serif;
+}
+
+/* WEATHER BAR */
+.weather {
+    text-align: center;
+    background-color: #99ccff; 
+    padding: 5px 0;
+    border-top: 2px solid #663300;
+    border-bottom: 2px solid #663300;
+    margin-top: 5px;
+}
+
+.weather p {
+    margin: 2px 0;
+    font-size: 0.9em;
+}
+
+.weather-link {
+    font-weight: bold;
+    color: #0000ff; 
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.weather-tonight {
+    font-style: italic;
+}
+
+/* MAIN LAYOUT (2 CỘT) */
+main {
+    background-color: white;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid black; 
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 3; 
+}
+
+.sidebar {
+    flex: 1; 
+    font-size: 0.9em;
+    padding-left: 10px;
+}
+
+/* SECTION TITLES */
+.section-title {
+    background-color: #ffcc99; 
+    color: #990000; 
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border: 1px solid #990000;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.section-title.visitors {
+    background-color: #99ccff; 
+    color: #0000ff; 
+    border: 1px solid #0000ff;
+}
+
+/* CONTENT TEXT/IMAGES */
+.section-block p {
+    font-size: 0.9em;
+    line-height: 1.4;
+    text-align: justify;
+}
+
+.image-with-text {
+    overflow: auto; 
+    margin-bottom: 15px;
+}
+
+.main-image-right {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+}
+
+.main-image-left {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+}
+
+.caption {
+    font-size: 0.8em !important;
+    text-align: center !important;
+    font-style: italic;
+    margin-top: 0 !important;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background-color: yellow;
+}
+.sidebar h3 {
+    text-align: center;
+    font-size: 1.1em;
+    color: #663300;
+    border-bottom: 1px solid #663300;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+.sidebar-heading {
+    font-weight: bold;
+    color: #663300;
+    margin-top: 10px;
+    margin-bottom: 5px !important;
+    font-size: 1em !important;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.sidebar li {
+    margin-bottom: 2px;
+}
+
+.sidebar a {
+    color: #0000ff; 
+    text-decoration: underline;
+}
+
+.sidebar a:hover {
+    color: #ff0000;
+}
