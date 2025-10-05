@@ -1,29 +1,44 @@
 <html>
-    <head>
-        <title>Login - Nguyễn Võ Như Ngọc</title>
-    </head>
-    <body>
-        <form name="frm_login"
-            action="https://itbclub.uel.edu.vn"
-            method="get"
-        >
+
+<head>
+    <title>Login - Nguyễn Võ Như Ngọc</title>
+    <script>
+        function open_itbclub()
+        {
+            //alert("Bạn muốn mở website CLB ITB hả?")
+            window.open("https://itbclub.uel.edu.vn","_blank")
+        }
+    </script>
+</head>
+
+<body>
+    <form name="frm_login" action="https://itbclub.uel.edu.vn" method="get">
+        <fieldset>
+            <legend>Login HR system</legend>
             <table>
                 <tr>
-                    <td>User Name:</td>
                     <td>
-                        <input type="text" name="username" id="username"/>
+                        <label for="username">
+                            User Name:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="username" id="username" />
                     </td>
                 </tr>
                 <tr>
                     <td>Password:</td>
                     <td>
-                        <input type="password" name="matkhau" id="matkhau"/>
+                        <input type="password" name="matkhau" id="matkhau" />
                     </td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <input type="checkbox" name="save" id="save"/>Save login infor
+                        <input type="checkbox" name="save" id="save" />
+                        <label for="save">
+                            Save login infor
+                        </label>
                     </td>
                 </tr>
                 <tr>
@@ -33,9 +48,12 @@
                     <td>
                         <button type="submit">Login</button>
                         <button type="reset">Reset</button>
+                        <button type="button" onclick="open_itbclub()">Open ITB CLUB</button>
                     </td>
                 </tr>
             </table>
-        </form>
-    </body>
+    </form>
+    </fieldset>
+</body>
+
 </html>
