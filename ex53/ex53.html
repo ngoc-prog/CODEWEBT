@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex53 - Nguyễn Võ Như Ngọc</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: none;
+        }
+        th, td {
+            border: none;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="number"] {
+            width: 60px;
+        }
+        input[type="text"] {
+            width: 100px;
+        }
+        button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .total-row {
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+            padding-top: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h2>Danh sách sản phẩm</h2>
+    <form method="GET" action="sum.html">
+        <table>
+            <thead>
+                <tr>
+                    <th>Part Number</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Item table</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>C112</td>
+                    <td>Mouse</td>
+                    <td>19.95$</td>
+                    <td><input type="number" name="qty_C112" min="0" step="1"></td>
+                    <td><input type="text" name="subtotal_C112" readonly></td>
+                </tr>
+                <tr>
+                    <td>B124</td>
+                    <td>Keyboard US</td>
+                    <td>29.95$</td>
+                    <td><input type="number" name="qty_B124" min="0" step="1"></td>
+                    <td><input type="text" name="subtotal_B124" readonly></td>
+                </tr>
+                <tr>
+                    <td>U125</td>
+                    <td>USB KingMax</td>
+                    <td>39.95$</td>
+                    <td><input type="number" name="qty_U125" min="0" step="1"></td>
+                    <td><input type="text" name="subtotal_U125" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total-row">
+            <label>Total: <input type="text" name="total" readonly></label>
+            <button type="submit">Sum</button>
+        </div>
+    </form>
+</body>
+</html>

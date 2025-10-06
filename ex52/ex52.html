@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Page - Nguyễn Võ Như Ngọc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], select, textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .email-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        .email-wrapper {
+            flex: 1;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+        .email-row input, .email-row select {
+            width: 100%;
+            margin-bottom: 0;
+        }
+        .send-to-group {
+            flex: 0 0 200px;
+        }
+        .send-to-group label {
+            margin-bottom: 5px;
+        }
+        .full-width {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Contact the editorial office</h2>
+        <form action="process.html" method="GET">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" class="full-width" required>
+
+            <label for="email">Email</label>
+            <div class="email-row">
+                <div class="email-wrapper">
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="send-to-group">
+                    <label for="sendTo">Send to</label>
+                    <select id="sendTo" name="sendTo" required>
+                        <option value="editorial-board" selected>Editorial board</option>
+                        <option value="news-department">News Department</option>
+                        <option value="board-perspectives">Board of Perspectives</option>
+                        <option value="business-department">Business Department</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="full-width" required>
+
+            <label for="content">Content</label>
+            <textarea id="content" name="content" class="full-width" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

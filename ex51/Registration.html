@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Newborn Registration Form - Nguyễn Võ Như Ngọc</title>
+    <style>
+        body {
+            background-color: #008080;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            background-color: #008080;
+            border: solid #008080;
+        }
+        .date-field label {
+            color: white;
+        }
+        .date-field input {
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+        .field-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .field-row label {
+            flex: 1;
+            color: white;
+        }
+        .field-row input {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: 150px;
+        }
+        .field {
+            margin-bottom: 10px;
+            color: white;
+        }
+        .field input {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: 200px;
+            margin-left: 10px;
+        }
+        .name-fields {
+            display: flex;
+            gap: 10px;
+        }
+        .name-fields input {
+            flex: 1;
+        }
+        .physician-section {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .select-multiple {
+            background-color: white;
+            border: 1px solid #ccc;
+            color: black;
+            padding: 5px;
+            width: 100%;
+            height: 120px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .buttons button {
+            background-color: #ccc;
+            border: 1px solid #999;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .buttons button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header" align="center">
+            <img src="images/Logo.gif"/>
+        </div>
+        <div class="title" style="color: white;" align="center"><h2>Newborn Registration</h2></div>
+        <br/>
+        
+        <div class="date-field">
+            <label>Date mm/dd/yyyy:</label>
+            <input type="text" placeholder="mm/dd/yyyy">
+        </div>
+        <br/>
+        
+        <div class="field">
+            <label>1) Infant's first name:</label>
+            <div class="name-fields">
+                <input type="text" placeholder="First name">
+                <input type="text" placeholder="Last">
+            </div>
+        </div>
+        
+        <div class="field">
+            <label>2) Medical Record #:</label>
+            <input type="text">
+        </div>
+        
+        <div class="field">
+            <label>3) Date of birth: mm/dd/yy</label>
+            <input type="text" placeholder="mm/dd/yy">
+        </div>
+        
+        <div class="field">
+            <label>4) Birth weight:</label>
+            <input type="text">
+        </div>
+        
+        <div class="field">
+            <label>5) APGAR score:</label>
+            <input type="text">
+        </div>
+        
+        <div class="field">
+            <label>6) Mother's first name:</label>
+            <div class="name-fields">
+                <input type="text" placeholder="First name">
+                <input type="text" placeholder="Last">
+            </div>
+        </div>
+        
+        <div class="field">
+            <label>7) Father's first name:</label>
+            <div class="name-fields">
+                <input type="text" placeholder="First name">
+                <input type="text" placeholder="Last">
+            </div>
+        </div>
+        
+        <div class="physician-section">
+            <label>8) Physician (check all that apply):</label>
+            <select class="select-multiple" multiple>
+                <option>Dr. Warren Albert</option>
+                <option>Dr. Maria Alvarez</option>
+                <option>Dr. Karen Brinkman</option>
+                <option>Dr. Michael Kerry</option>
+            </select>
+        </div>
+        
+        <div class="buttons">
+            <button type="submit">Register</button>
+            <button type="button">Cancel</button>
+        </div>
+    </div>
+</body>
+</html>
