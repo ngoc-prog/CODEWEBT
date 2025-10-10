@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 54: Math Functions - Nguyễn Võ Như Ngọc</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+        }
+        td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+        input {
+            width: 100px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>a:</td>
+            <td><input type="text" id="a"></td>
+        </tr>
+        <tr>
+            <td>b:</td>
+            <td><input type="text" id="b"></td>
+        </tr>
+        <tr>
+            <td>c:</td>
+            <td><input type="text" id="c"></td>
+        </tr>
+        <tr>
+            <td>Result:</td>
+            <td><input type="text" id="result" readonly></td>
+        </tr>
+    </table>
+    <div>
+        <button onclick="maxFunc()">MAX</button>
+        <button onclick="minFunc()">MIN</button>
+        <button onclick="sinAFunc()">sin(a)</button>
+        <button onclick="cosAFunc()">cos(a)</button>
+        <button onclick="powerFunc()">a^b</button>
+    </div>
+
+    <script>
+        function maxFunc() {
+            var a = parseFloat(document.getElementById('a').value);
+            var b = parseFloat(document.getElementById('b').value);
+            var c = parseFloat(document.getElementById('c').value);
+            var res = Math.max(a, b, c);
+            document.getElementById('result').value = res.toFixed(10);
+        }
+
+        function minFunc() {
+            var a = parseFloat(document.getElementById('a').value);
+            var b = parseFloat(document.getElementById('b').value);
+            var c = parseFloat(document.getElementById('c').value);
+            var res = Math.min(a, b, c);
+            document.getElementById('result').value = res.toFixed(10);
+        }
+
+        function sinAFunc() {
+            var a = parseFloat(document.getElementById('a').value);
+            var res = Math.sin(a);
+            document.getElementById('result').value = res.toFixed(16);
+        }
+
+        function cosAFunc() {
+            var a = parseFloat(document.getElementById('a').value);
+            var res = Math.cos(a);
+            document.getElementById('result').value = res.toFixed(16);
+        }
+
+        function powerFunc() {
+            var a = parseFloat(document.getElementById('a').value);
+            var b = parseFloat(document.getElementById('b').value);
+            var res = Math.pow(a, b);
+            document.getElementById('result').value = res.toFixed(10);
+        }
+    </script>
+</body>
+</html>

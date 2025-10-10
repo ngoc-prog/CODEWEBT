@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 55: The Quadratic Equation - Nguyễn Võ Như Ngọc</title>
+    <style>
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+        }
+        .title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background-color: greenyellow;
+        }
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .input-row label {
+            width: 20px;
+        }
+        .input-row input {
+            width: 100px;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .result-row label {
+            width: 50px;
+        }
+        .result-row input {
+            width: 200px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: 1px solid orange;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">The quadratic equation</div>
+        <div class="input-row">
+            <label>a:</label>
+            <input type="text" id="a">
+        </div>
+        <div class="input-row">
+            <label>b:</label>
+            <input type="text" id="b">
+        </div>
+        <div class="input-row">
+            <label>c:</label>
+            <input type="text" id="c">
+        </div>
+        <div class="result-row">
+            <label>Result:</label>
+            <input type="text" id="result" readonly>
+        </div>
+        <div class="buttons">
+            <button onclick="findSolution()">Find solution</button>
+            <button onclick="clearFields()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        function findSolution() {
+            var a = parseFloat(document.getElementById('a').value);
+            var b = parseFloat(document.getElementById('b').value);
+            var c = parseFloat(document.getElementById('c').value);
+            
+            if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) {
+                document.getElementById('result').value = "Invalid input";
+                return;
+            }
+            
+            var D = b * b - 4 * a * c;
+            var result = "";
+            
+            if (D > 0) {
+                var sqrtD = Math.sqrt(D);
+                var x1 = (-b - sqrtD) / (2 * a);
+                var x2 = (-b + sqrtD) / (2 * a);
+                result = "x1=" + x1.toFixed(2) + "; x2=" + x2.toFixed(2);
+            } else if (D === 0) {
+                var x = -b / (2 * a);
+                result = "x1 = x2 = " + x.toFixed(2);
+            } else {
+                result = "No real solutions";
+            }
+            
+            document.getElementById('result').value = result;
+        }
+
+        function clearFields() {
+            document.getElementById('a').value = '';
+            document.getElementById('b').value = '';
+            document.getElementById('c').value = '';
+            document.getElementById('result').value = '';
+        }
+    </script>
+</body>
+</html>
