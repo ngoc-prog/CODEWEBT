@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS: String Processing Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .main-container { display: flex; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; }
+        .input-section, .result-section { flex: 1; margin: 0 10px; }
+        textarea, #result { width: 100%; height: 100px; border: 1px solid #ddd; padding: 10px; box-sizing: border-box; }
+        #result { background-color: #f9f9f9; overflow: auto; white-space: pre-wrap; }
+        table { border-collapse: collapse; width: 100%; }
+        td { border: 1px solid #ddd; padding: 10px; vertical-align: top; text-align: center; }
+        button { width: 100%; padding: 8px; background-color: #f0f0f0; border: 1px solid #ccc; cursor: pointer; }
+        button:hover { background-color: #e0e0e0; }
+        .title { text-align: center; font-weight: bold; margin-bottom: 10px; }
+        caption { caption-side: bottom; text-align: center; font-style: italic; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Using String Processing Website</h1>
+    <div class="main-container">
+        <div class="input-section">
+            <strong>Input Data:</strong>
+            <textarea id="inputData" placeholder="Enter your text here..."></textarea>
+        </div>
+        <div class="result-section">
+            <strong>Result:</strong>
+            <div id="result"></div>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td><button onclick="enterData()">Enter Data</button></td>
+            <td><button onclick="countUppercase()">Count the number of uppercase characters</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="uppercaseDisplay()">Uppercase display</button></td>
+            <td><button onclick="oneWordPerLine()">Output one word per line</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="lowercaseDisplay()">Lowercase display</button></td>
+            <td><button onclick="wordCount()">Word count</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="countLowercase()">Count the number of lowercase characters</button></td>
+            <td><button onclick="printVowelsConsonants()">Print vowels, consonants</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button onclick="openwebsite()">W3C's String Processing Website</button></td>
+        </tr>
+    </table>
+
+    <script>
+        function getInput() {
+            return document.getElementById('inputData').value;
+        }
+
+        function updateResult(content) {
+            document.getElementById('result').innerHTML = content;
+        }
+
+        function enterData() {
+            document.getElementById('inputData').value = '';
+            document.getElementById('inputData').focus();
+        }
+
+        function countUppercase() {
+            const text = getInput();
+            const count = (text.match(/[A-Z]/g) || []).length;
+            updateResult(`Number of uppercase characters: ${count}`);
+        }
+
+        function uppercaseDisplay() {
+            const text = getInput();
+            updateResult(text.toUpperCase());
+        }
+
+        function oneWordPerLine() {
+            const text = getInput();
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            updateResult(words.join('\n'));
+        }
+
+        function lowercaseDisplay() {
+            const text = getInput();
+            updateResult(text.toLowerCase());
+        }
+
+        function wordCount() {
+            const text = getInput();
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            updateResult(`Word count: ${words.length}`);
+        }
+
+        function countLowercase() {
+            const text = getInput();
+            const count = (text.match(/[a-z]/g) || []).length;
+            updateResult(`Number of lowercase characters: ${count}`);
+        }
+
+        function printVowelsConsonants() {
+            const text = getInput();
+            const vowels = (text.match(/[aeiou]/gi) || []).length;
+            const totalLetters = (text.match(/[a-zA-Z]/g) || []).length;
+            const consonants = totalLetters - vowels;
+            updateResult(`Vowels: ${vowels}, Consonants: ${consonants}`);
+        }
+
+        function openwebsite() {
+            window.open('http://uel.edu.vn', '_blank');
+        }
+    </script>
+</body>
+</html>

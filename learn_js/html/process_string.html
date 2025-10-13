@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>IndexOf, LastIndexOf, Substring</title>
+        <script>
+            function process_string()
+            {
+                // Lấy giá trị từ input_str
+                str = my_form.input_str.value;
+
+                // Tìm vị trí của dấu chấm phẩy
+                p1 = str.indexOf(";");
+                p2 = str.lastIndexOf(";");
+
+                // Trích xuất ID, NAME và PRICE từ chuỗi
+                out_id = str.substring(0, p1); // ID là phần trước dấu chấm phẩy đầu tiên
+                out_name = str.substring(p1 + 1, p2); // NAME là phần giữa hai dấu chấm phẩy
+                out_price = str.substring(p2 + 1); // PRICE là phần sau dấu chấm phẩy cuối cùng
+
+                // Hiển thị ID, NAME, và PRICE
+                td_id.innerText = out_id;
+                td_name.innerText = out_name;
+                td_price.innerText = out_price;
+            }
+        </script>
+    </head>
+    <body>
+        <form name="my_form">
+            <table>
+                <tr>
+                    <td>Input string:</td>
+                    <td>
+                        <input type="text" name="input_str" id="input_str" value="P01;Banana;15"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <button type="button" onclick="process_string()">Process</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ID:</td>
+                    <td id="td_id"></td>
+                </tr>
+                <tr>
+                    <td>NAME:</td>
+                    <td id="td_name"></td>
+                </tr>
+                <tr>
+                    <td>PRICE:</td>
+                    <td id="td_price"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
