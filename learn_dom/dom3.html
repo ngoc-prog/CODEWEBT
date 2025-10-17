@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title>Tiêu đề trang</title>
+        <script type="text/javascript">
+            var datasets=
+            [
+                {"ID":"P01",
+                    "Name":"Coca",
+                    "Price":15,
+                    "Quantity":5,
+                    "Photo":"coca.jpg"
+                },
+                {"ID":"P02",
+                    "Name":"Pepsi",
+                    "Price":20,
+                    "Quantity":10,
+                    "Photo":"pepsi.jpg"
+                },
+                {"ID":"P03",
+                    "Name":"Sting",
+                    "Price":20,
+                    "Quantity":34,
+                    "Photo":"sting.jpg"
+                },
+                {"ID":"P04",
+                    "Name":"Fanta",
+                    "Price":8,
+                    "Quantity":7,
+                    "Photo":"fanta.jpg"
+                },
+                {"ID":"P05",
+                    "Name":"Sprite",
+                    "Price":23,
+                    "Quantity":9,
+                    "Photo":"sprite.jpg"
+                },
+            ]
+        </script>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Photo</th>
+                <th>Actions:</th>
+            </tr>
+            <thead>
+            <tbody id="product_tbody">
+
+            </tbody>
+            </thead>
+        </table>
+        <script type="text/javascript">
+            function display_products_table()
+            {
+                //access product_tbody
+                product_tbody=document.getElementById("product_tbody")
+                //loop all products:
+                for(i=0;i<datasets.length;i++)
+                {
+                    product=datasets[i]
+                    //create a tr(row):
+                    row=document.createElement("tr")
+                    //create 6 td:
+                    td_id=document.createElement("td")
+                    td_name=document.createElement("td")
+                    td_quantity=document.createElement("td")
+                    td_price=document.createElement("td")
+                    td_photo=document.createElement("td")
+                    td_action=document.createElement("td")
+                    //assign value for td:
+                    td_id.innerText=product.ID
+                    td_name.innerText=product.Name
+                    td_quantity.innerText=product.Quantity
+                    td_price.innerText=product.Price
+                    
+                    //td_photo.innerText="later..."
+                    img_p=document.createElement("img")
+                    img_p.setAttribute("src","images/"+product.Photo)
+                    img_p.setAttribute("width",50)
+                    img_p.setAttribute("height",100)
+                    img_p.setAttribute("title","click here to view detail")
+                    img_p.setAttribute("style","cursor:pointer")
+                    td_photo.appendChild(img_p)
+
+                    //td_action.innerText="later..."
+                    img_detail=document.createElement("img")
+                    img_detail.setAttribute("src","images/ic_detail.png")
+                    img_detail.setAttribute("style","cursor:pointer")
+                    img_detail.setAttribute("title","View detail")
+                    td_action.appendChild(img_detail)
+
+                    img_edit=document.createElement("img")
+                    img_edit.setAttribute("src","images/ic_edit.png")
+                    img_edit.setAttribute("style","cursor:pointer")
+                    img_edit.setAttribute("title","Edit product")
+                    td_action.appendChild(img_edit)
+
+                    img_delete=document.createElement("img")
+                    img_delete.setAttribute("src","images/ic_delete.png")
+                    img_delete.setAttribute("style","cursor:pointer")
+                    img_delete.setAttribute("title","Delete product")
+                    td_action.appendChild(img_delete)
+
+                    //save memory for parent row:
+                    img_delete.parent_row=row
+
+                    img_delete.onclick=function()
+                    {
+                        name=this.parent_row.childNodes[1].innerText
+                        if(confirm("e, muon xoa ["+name+"] ha?"))
+                        {
+                            product_tbody.removeChild(this.parent_row)
+                        }
+                    }
+
+                    //save product item:
+                    img_detail.selected_product=product
+                    img_detail.onclick=function()
+                    {
+                        //localstorage:
+                        jsonString=JSON.stringify(this.selected_product)
+                        //save data into hard disk
+                        localStorage.setItem("my_product",jsonString)
+                        window.open("detail.html","_self")
+                    }
+
+                    //push td(s) into row:
+                    row.appendChild(td_id)
+                    row.appendChild(td_name)
+                    row.appendChild(td_quantity)
+                    row.appendChild(td_price)
+                    row.appendChild(td_photo)
+                    row.appendChild(td_action)
+                    //push row tbody:
+                    product_tbody.appendChild(row)
+                }
+            }
+            //call function:
+            display_products_table()
+        </script>
+    </body>
+</html>

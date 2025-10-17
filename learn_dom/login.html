@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Tiêu đề trang</title>
+        <script type="text/javascript">
+            var accounts = [
+                {"user_name": "admin", "password": "123"},
+                {"user_name": "reporter", "password": "456"},
+            ]
+        </script>
+    </head>
+    <body>
+        <form name="my_form">
+            <fieldset>
+                <legend>Login information:</legend>
+                <table border="1">
+                    <tr>
+                        <td rowspan="7">
+                            <img src="images/ic_admin.png"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>User name:</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="username" id="username"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="password" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="saveinfor" id="saveinfor">
+                            <label for="saveinfor">Save login information</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" onclick="process_login()">Login</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+
+        <script type="text/javascript">
+            function process_login() {
+                var login_infor = null;
+
+                // Lặp qua các tài khoản để kiểm tra thông tin đăng nhập
+                for (var i = 0; i < accounts.length; i++) {
+                    var ac = accounts[i];
+                    if (ac.user_name == my_form.username.value && ac.password == my_form.password.value) {
+                        login_infor = ac;  // Lưu thông tin đăng nhập hợp lệ
+                        break;
+                    }
+                }
+
+                // Nếu không tìm thấy tài khoản hợp lệ
+                if (login_infor == null) {
+                    alert("Login failed, please contact the help desk.");
+                } else {
+                    // Lưu thông tin đăng nhập vào localStorage
+                    var jsonString = JSON.stringify(login_infor);
+                    localStorage.setItem("login_infor", jsonString);
+                    localStorage.setItem("login_infor_saved",my_form.saveinfor.checked)
+
+                    // Chuyển hướng trang dựa trên vai trò của người dùng
+                    if (login_infor.user_name == "admin") 
+                    {
+                        window.location.href = "dom3.html"; 
+                    } 
+                    else 
+                    {
+                        window.location.href = "dom2.html"; 
+                    }
+                }
+            }
+        </script>
+        <script text="text/javascript">
+            function load_login_infor()
+            {
+                jsonString=localStorage.getItem("login_infor")
+                ac=JSON.parse(jsonString)
+                saved=localStorage.getItem("login_infor_saved")
+                if(saved=="true")
+                {
+                    my_form.username.value=ac.user_name
+                    my_form.password.value=ac.password
+                    my_form.saveinfor.checked=true
+                }
+            }
+            load_login_infor()
+        </script>
+    </body>
+</html>
