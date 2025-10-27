@@ -26,10 +26,10 @@
     <script type="text/javascript">
         stringJson = localStorage.getItem("selected_book")
         bookObject = JSON.parse(stringJson)
-        td_title.innerText = bookObject.Title
-        td_author.innerText = bookObject.Author
-        td_year.innerText = bookObject.td_Year
-        img_cover.src = "../images/" + bookObject.Cover 
+        td_title.innerText = bookObject.title
+        td_author.innerText = bookObject.author
+        td_year.innerText = bookObject.year
+        img_cover.src = "../images/" + bookObject.cover 
     </script>
 </body>
 

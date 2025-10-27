@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Tiêu đề trang</title>
+    <script type="text/javascript">
+        function load_weather_forecast() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://webapi.dantri.com.vn/misc", true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var string_json = xhr.responseText;
+                    var object_json = JSON.parse(string_json);
+                    for (i = 0; i < object_json.weathers.length; i++) {
+                        var weather = object_json.weathers[i];
+                        var tr = document.createElement("tr");
+                        var td_city = document.createElement("td");
+                        var td_temp = document.createElement("td");
+                        var td_status = document.createElement("td");
+                        var td_icon = document.createElement("td");
+
+                        td_city.innerText = weather.name;
+                        td_temp.innerText = weather.temperature;
+                        td_status.innerText = weather.clouds;
+                        td_icon.innerText = weather.icon;
+                        //Tự xử icon mưa: https://openweathermap.org/img/wn/09d@2x.png
+
+                        tr.appendChild(td_city);
+                        tr.appendChild(td_temp);
+                        tr.appendChild(td_status);
+                        tr.appendChild(td_icon);
+
+                        weather_tbody.appendChild(tr);
+                    }
+                }
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <table border="1">
+        <caption>Weathers:</caption>
+        <thead>
+            <tr>
+                <th>City/Province</th>
+                <th>Temperature</th>
+                <th>Status</th>
+                <th>Icon</th>
+            </tr>
+        </thead>
+        <tbody id="weather_tbody">
+        </tbody>
+    </table>
+    <script>
+        load_weather_forecast();
+    </script>
+</body>
+
+</html>

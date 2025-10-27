@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <title>Tiêu đề trang</title>
+    <script type="text/javascript">
+        function load_books_ajax() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../dataset/books_cover.json", true)
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var string_json = xhr.responseText;
+                    my_div.innerText = string_json;
+                    var object_json = JSON.parse(string_json);
+                    for (i = 0; i < object_json.bookstore.book.length; i++) {
+                        var book = object_json.bookstore.book[i];
+                        var tr = document.createElement("tr");
+                        var td_title = document.createElement("td");
+                        var td_author = document.createElement("td");
+                        var td_year = document.createElement("td");
+                        var td_cover = document.createElement("td");
+                        var td_action = document.createElement("td");
+
+                        td_title.innerText = book.title;
+                        td_author.innerText = book.author;
+                        td_year.innerText = book.year;
+
+                        img_cover = document.createElement("img")
+                        img_cover.setAttribute("src", "../images/" + book.cover)
+                        img_cover.setAttribute("width", "50")
+                        img_cover.setAttribute("height", "100")
+                        img_cover.setAttribute("style", "cursor:pointer")
+                        img_cover.setAttribute("title", "Click here to view product detail")
+                        td_cover.appendChild(img_cover)
+                        //saving memory
+                        img_cover.selected_book = book
+
+                        img_cover.onclick = function () {
+                            selected_book = this.selected_book
+                            string_json = JSON.stringify(selected_book)
+                            localStorage.setItem("selected_book", string_json)
+                            window.open("book_detail.html", "_self")
+                            alert("Bạn muốn xem chi tiết sản phẩm " + selected_book.title)
+                        }
+
+                        img_detail = document.createElement("img")
+                        img_detail.setAttribute("src", "../images/ic_detail.png")
+                        td_action.appendChild(img_detail)
+
+                        img_edit = document.createElement("img")
+                        img_edit.setAttribute("src", "../images/ic_edit.png")
+                        td_action.appendChild(img_edit)
+
+                        img_delete = document.createElement("img")
+                        img_delete.setAttribute("src", "../images/ic_delete.png")
+                        img_delete.setAttribute("title", "Click here to remove this item")
+                        img_delete.setAttribute("style", "cursor:pointer")
+                        td_action.appendChild(img_delete)
+
+                        img_delete.parse_row = tr
+                        img_delete.onclick = function () {
+                            title_delete = this.parse_row.childNodes[0].innerText
+                            if (confirm("ê...muốn xóa [" + title_delete + "] hả")) {
+                                book_tbody.removeChild(this.parse_row)
+                            }
+                        }
+
+                        tr.appendChild(td_title);
+                        tr.appendChild(td_author);
+                        tr.appendChild(td_year);
+                        tr.appendChild(td_cover);
+                        tr.appendChild(td_action)
+
+                        book_tbody.appendChild(tr);
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="my_div" style="height: 150px;overflow-y: scroll;background-color: beige;">
+    </div>
+    <table border="1">
+        <caption>List of Books</caption>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Cover</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="book_tbody">
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        load_books_ajax();
+    </script>
+</body>
+
+</html>

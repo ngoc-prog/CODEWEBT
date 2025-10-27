@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VnExpress Thể Thao</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: #333; }
+    .article { margin-bottom: 20px; }
+    .article h2 { margin: 0; font-size: 1.2em; }
+    .article p { margin: 5px 0; }
+    .article a { color: #0066cc; text-decoration: none; }
+    .article a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>VnExpress Thể Thao</h1>
+  <div id="news"></div>
+
+  <script>
+    const rssUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://vnexpress.net/rss/the-thao.rss');
+    const newsContainer = document.getElementById('news');
+
+    fetch(rssUrl)
+      .then(response => response.json())
+      .then(data => {
+        const xmlData = new window.DOMParser().parseFromString(data.contents, 'text/xml');
+        const items = xmlData.querySelectorAll('item');
+        items.forEach(item => {
+          const title = item.querySelector('title').textContent;
+          const link = item.querySelector('link').textContent;
+          const description = item.querySelector('description').textContent;
+          const pubDate = item.querySelector('pubDate').textContent;
+
+          const article = document.createElement('div');
+          article.classList.add('article');
+          article.innerHTML = `
+            <h2><a href="${link}" target="_blank">${title}</a></h2>
+            <p><strong>Ngày đăng:</strong> ${new Date(pubDate).toLocaleDateString()}</p>
+            <p>${description}</p>
+          `;
+          newsContainer.appendChild(article);
+        });
+      })
+      .catch(error => {
+        console.error('Lỗi khi tải RSS:', error);
+        newsContainer.innerHTML = '<p>Không thể tải tin tức thể thao.</p>';
+      });
+  </script>
+</body>
+</html>
