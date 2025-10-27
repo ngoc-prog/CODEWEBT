@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>Tiêu đề trang</title>
+    <script type="text/javascript">
+        function load_books_ajax() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../dataset/books.xml", true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    //vào đây tức là đã tải dữ liệu trên mạng về
+                    //local thành công --> ta sài GOM để lấy dữ liệu
+                    //alert("Chúc mừng bạn đã tải thành công")
+                    //handling when loading data successfully
+                    var xmlDoc = xhr.responseXML
+                    var books = xmlDoc.getElementsByTagName("book")
+                    for (i = 0; i < books.length; i++) {
+                        book = books[i];
+                        title = book.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+                        author = book.getElementsByTagName("author")[0].childNodes[0].nodeValue;
+                        year = book.getElementsByTagName("year")[0].childNodes[0].nodeValue;
+                        tr = document.createElement("tr");
+                        td_title = document.createElement("td");
+                        td_title.innerText = title;
+                        td_author = document.createElement("td");
+                        td_author.innerText = author;
+                        td_year = document.createElement("td");
+                        td_year.innerText = year;
+                        tr.appendChild(td_title);
+                        tr.appendChild(td_author);
+                        tr.appendChild(td_year);
+                        book_tbody.appendChild(tr)
+                    }
+                }
+                else {
+                    //handling when data can't be loaded
+                }
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <table border="1">
+        <caption>List of Books</caption>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody id="book_tbody">
+
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        load_books_ajax()
+    </script>
+</body>
+
+</html>

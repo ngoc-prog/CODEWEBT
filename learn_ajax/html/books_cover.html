@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <title>Tiêu đề trang</title>
+    <script type="text/javascript">
+        function load_books_ajax() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../dataset/books_cover.xml", true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Handling when loading data successfully
+                    var xmlDoc = xhr.responseXML;
+                    var books = xmlDoc.getElementsByTagName("book");
+                    var book_tbody = document.getElementById("book_tbody"); // Make sure to get tbody element
+                    for (i = 0; i < books.length; i++) {
+                        var book = books[i];
+                        var title = book.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+                        var author = book.getElementsByTagName("author")[0].childNodes[0].nodeValue;
+                        var year = book.getElementsByTagName("year")[0].childNodes[0].nodeValue;
+                        var cover = book.getElementsByTagName("cover")[0].childNodes[0].nodeValue;
+
+                        var tr = document.createElement("tr");
+
+                        var td_title = document.createElement("td");
+                        td_title.innerText = title;
+                        var td_author = document.createElement("td");
+                        td_author.innerText = author;
+                        var td_year = document.createElement("td");
+                        td_year.innerText = year;
+
+                        var td_cover = document.createElement("td");
+                        var img_cover = document.createElement("img");
+                        img_cover.setAttribute("src", "../images/" + cover); // Corrected setAttribute
+                        img_cover.setAttribute("height", "100"); // Corrected setAttribute
+                        img_cover.setAttribute("width", "50"); // Corrected setAttribute
+                        td_cover.appendChild(img_cover);
+                        img_cover.setAttribute("title","view detail")
+                        img_cover.setAttribute("style","cursor:pointer")
+                        //save memory
+                        jsonBook={"Title":title,
+                                  "Author":author,
+                                  "Year":year,
+                                  "Cover":cover
+                        }
+                        img_cover.selected_book=jsonBook
+                        img_cover.onclick=function()
+                        {
+                            stringJsonBook=JSON.stringify(this.selected_book)
+                            localStorage.setItem("selected_book",stringJsonBook)
+                            window.open("book_detail.html","_self")
+                        }
+
+                        tr.appendChild(td_title);
+                        tr.appendChild(td_author);
+                        tr.appendChild(td_year);
+                        tr.appendChild(td_cover);
+
+                        book_tbody.appendChild(tr);
+                    }
+                } else {
+                    // Handling when data can't be loaded
+                    console.error("Error loading XML data.");
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <table border="1">
+        <caption>List of Books</caption>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Cover</th>
+            </tr>
+        </thead>
+        <tbody id="book_tbody">
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        load_books_ajax();
+    </script>
+</body>
+
+</html>
